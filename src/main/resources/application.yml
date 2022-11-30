@@ -1,10 +1,4 @@
 spring:
-  h2:
-    console:
-      enabled: true
-
-  datasource:
-      url: jdbc:h2:mem:testdb
 
   jpa:
       show-sql: true
@@ -12,3 +6,21 @@ spring:
       hibernate:
         ddl-auto: create-drop
       defer-datasource-initialization: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+
+  h2:
+    console:
+      enabled: true
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: '*'
+
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html

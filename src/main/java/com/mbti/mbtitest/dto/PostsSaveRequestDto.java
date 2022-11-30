@@ -1,6 +1,7 @@
 package com.mbti.mbtitest.dto;
 
 import com.mbti.mbtitest.domain.posts.Posts;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,4 +22,12 @@ public class PostsSaveRequestDto {
                 .author(author)
                 .build();
     }
+
+    @Builder
+    public PostsSaveRequestDto(String title, String content, String author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
+
 }
