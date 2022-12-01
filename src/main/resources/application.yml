@@ -1,19 +1,24 @@
 spring:
 
   jpa:
-      show-sql: true
-      generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
       hibernate:
-        ddl-auto: create-drop
-      defer-datasource-initialization: true
+        format_sql: true
 
   datasource:
-    url: jdbc:h2:mem:testdb
+    # MySQL
+    driver-class-name: com.mysql.jdbc.Driver
+    # DB Source URL
+    # DB username
+    username: root
+    # DB password
+    password: 293648ak!
+    # 처리시 발생하는 쿼리문을 보여줄 것인지
+    url: jdbc:mysql://localhost:3306/mbtitest
 
-
-  h2:
-    console:
-      enabled: true
 
   management:
     endpoints:
