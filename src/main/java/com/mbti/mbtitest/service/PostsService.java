@@ -1,6 +1,6 @@
 package com.mbti.mbtitest.service;
 
-import com.mbti.mbtitest.domain.posts.PostsRepository;
+import com.mbti.mbtitest.repository.PostsRepository;
 import com.mbti.mbtitest.dto.PostsMainResponseDto;
 import com.mbti.mbtitest.dto.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;

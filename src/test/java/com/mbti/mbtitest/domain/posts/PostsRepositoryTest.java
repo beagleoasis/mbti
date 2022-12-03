@@ -1,4 +1,5 @@
 package com.mbti.mbtitest.domain.posts;
+import com.mbti.mbtitest.repository.PostsRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;

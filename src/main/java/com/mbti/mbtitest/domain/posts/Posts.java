@@ -1,5 +1,6 @@
 package com.mbti.mbtitest.domain.posts;
 
+import com.mbti.mbtitest.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Posts extends BaseTimeEntity{
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue

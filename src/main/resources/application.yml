@@ -1,22 +1,23 @@
 spring:
 
   jpa:
+    # 처리시 발생하는 쿼리문을 보여줄 것인지
     show-sql: true
     hibernate:
-      ddl-auto: create
+      # 테이블 자동 생성 방식
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
 
   datasource:
     # MySQL
-    driver-class-name: com.mysql.jdbc.Driver
-    # DB Source URL
+    driver-class-name: com.mysql.cj.jdbc.Driver
     # DB username
     username: root
     # DB password
     password: 293648ak!
-    # 처리시 발생하는 쿼리문을 보여줄 것인지
+    # DB Source URL
     url: jdbc:mysql://localhost:3306/mbtitest
 
 
@@ -26,6 +27,7 @@ spring:
         exposure:
           include: '*'
 
+  # 타임 리프
   thymeleaf:
     prefix: classpath:templates/
     suffix: .html

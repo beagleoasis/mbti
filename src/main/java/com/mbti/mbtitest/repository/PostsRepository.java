@@ -1,5 +1,6 @@
-package com.mbti.mbtitest.domain.posts;
+package com.mbti.mbtitest.repository;
 
+import com.mbti.mbtitest.domain.posts.Posts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

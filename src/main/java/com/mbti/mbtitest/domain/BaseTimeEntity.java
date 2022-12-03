@@ -1,4 +1,4 @@
-package com.mbti.mbtitest.domain.posts;
+package com.mbti.mbtitest.domain;
 
 
 import lombok.Getter;

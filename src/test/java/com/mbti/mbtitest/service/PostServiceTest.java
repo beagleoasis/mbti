@@ -1,7 +1,7 @@
 package com.mbti.mbtitest.service;
 
 import com.mbti.mbtitest.domain.posts.Posts;
-import com.mbti.mbtitest.domain.posts.PostsRepository;
+import com.mbti.mbtitest.repository.PostsRepository;
 import com.mbti.mbtitest.dto.PostsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
