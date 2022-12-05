@@ -6,9 +6,10 @@ import lombok.Getter;
 
 import java.util.Map;
 
+// OAuth2UserService를 통해 가져온 카카오 OAuth2User의 attributes를 담을 클래스
 @Getter
 public class OAuthAttributes {
-    private Map<String, Object> attributes;
+    private Map<String, Object> attributes; // OAuth service의 유저 정보들
     private String nameAttributeKey;
     private String name;
     private String email;
@@ -22,16 +23,20 @@ public class OAuthAttributes {
     }
 
     public static OAuthAttributes of(String socialName, String userNameAttributeName, Map<String, Object> attributes){
-        // 카카오
+        // 카카오인 경우,
         if("kakao".equals(socialName)){
             return ofKakao("id", attributes);
         }
+
+        // 네이버인 경우,
 
         return null;
     }
 
     private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String, Object> attributes) {
+        // 카카오 계정
         Map<String, Object> kakaoAccount = (Map<String, Object>)attributes.get("kakao_account");
+        // 카카오 프로필
         Map<String, Object> kakaoProfile = (Map<String, Object>)kakaoAccount.get("profile");
 
         return OAuthAttributes.builder()

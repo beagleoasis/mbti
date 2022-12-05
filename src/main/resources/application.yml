@@ -5,7 +5,7 @@ spring:
     show-sql: true
     hibernate:
       # 테이블 자동 생성 방식
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -43,11 +43,11 @@ spring:
             redirect-uri: http://localhost:8080/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             client-authentication-method: POST
-            client-name: Kakao
+            client-name: Kakao # Spring 내에서 인식할 OAuth2 Provider Name
             scope: profile_nickname, account_email #동의항목
         provider:
           kakao:
-            authorization-uri: https://kauth.kakao.com/oauth/authorize
-            token-uri: https://kauth.kakao.com/oauth/token
-            user-info-uri: https://kapi.kakao.com/v2/user/me
-            user-name-attribute: id
+            authorization-uri: https://kauth.kakao.com/oauth/authorize # authorization code 얻는 API
+            token-uri: https://kauth.kakao.com/oauth/token # access token을 얻는 API
+            user-info-uri: https://kapi.kakao.com/v2/user/me # 유저 정보 조회 API
+            user-name-attribute: id # userInfo API Response에서 얻어올 ID 프로퍼티
