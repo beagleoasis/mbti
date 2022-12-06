@@ -16,10 +16,10 @@
                         <a th:unless="${userInfo == null}" class="nav-link js-scroll-trigger" href="#about" th:onclick="|location.href='@{/oauth2/authorization/kakao}'|">로그아웃</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#experience" th:onclick="goToLink()">MBTI 이름짓기</a>
+                        <a class="nav-link js-scroll-trigger" href="#experience" >MBTI 이름짓기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#education">MBTI 키워드 추천하기</a>
+                        <a class="nav-link js-scroll-trigger" href="#education" th:onclick="|location.href='@{/mbtiBoards}'|">MBTI 키워드 추천하기</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#skills">사용된 기술 스택</a>
