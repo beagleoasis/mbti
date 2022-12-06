@@ -2,32 +2,32 @@ package com.mbti.mbtitest.ctrl;
 
 import com.mbti.mbtitest.domain.mbtiboard.MbtiBoard;
 import com.mbti.mbtitest.service.MbtiBoardService;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Controller
 public class MbtiBoardController {
 
-    private MbtiBoardService service;
+    private MbtiBoardService mbtiBoardService;
 
     // 생성자 방식의 의존성 주입
-    public MbtiBoardController(MbtiBoardService service){
-        this.service = service;
+    public MbtiBoardController(MbtiBoardService mbtiBoardService){
+        this.mbtiBoardService = mbtiBoardService;
     }
 
     @GetMapping("/mbtiBoards")
-    public String selectAllMbtiBoards(){
+    public String selectAllMbtiBoards(Model model){
 
-        return "mbtiboard/mbtiboard";
+        List<MbtiBoard> mbtiBoards = mbtiBoardService.findAll();
+
+        model.addAttribute("mbtiBoards", mbtiBoards);
+
+        return "mbtiboard";
     }
 
     /*
