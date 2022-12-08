@@ -51,3 +51,9 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token # access token을 얻는 API
             user-info-uri: https://kapi.kakao.com/v2/user/me # 유저 정보 조회 API
             user-name-attribute: id # userInfo API Response에서 얻어올 ID 프로퍼티
+
+# SQL 쿼리문 확인용 p6spy 설정
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
