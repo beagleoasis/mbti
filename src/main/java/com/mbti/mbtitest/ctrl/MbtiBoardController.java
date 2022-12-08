@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
 @Controller
 public class MbtiBoardController {
 
@@ -20,6 +18,7 @@ public class MbtiBoardController {
         this.mbtiBoardService = mbtiBoardService;
     }
 
+    // 게시글 조회
     @GetMapping("/mbtiBoards")
     public String selectAllMbtiBoards(Model model){
 
@@ -29,6 +28,15 @@ public class MbtiBoardController {
 
         return "mbtiboard";
     }
+
+    // 게시글 작성 페이지 이동
+    @GetMapping("/mbtiBoards/write")
+    public String selectMbtiBoardWrite(){
+
+        return "mbtiboardwrite";
+    }
+
+
 
     /*
     // 모든 mbti 게시글 조회
