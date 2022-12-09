@@ -47,9 +47,9 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         // 소셜에서 가져온 유저 정보를 통한 save or update
         User user = saveOrUpdate(attributes);
 
-        System.out.println("user : " + user.toString());
-
         httpSession.setAttribute("user", new SessionUser(user));
+
+        System.out.println("user 소셜로그인 확인@@@@@ : " + user.getName());
 
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
                 attributes.getAttributes(),

@@ -4,17 +4,28 @@ import com.mbti.mbtitest.config.auth.SessionUser;
 import com.mbti.mbtitest.domain.mbtiboard.MbtiBoard;
 import com.mbti.mbtitest.dto.MbtiBoardSaveRequestDto;
 import com.mbti.mbtitest.service.MbtiBoardService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.activation.CommandMap;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MbtiBoardController {
+    // 로거
+    private static final Logger logger = LoggerFactory.getLogger(MbtiBoardController.class);
 
     private MbtiBoardService mbtiBoardService;
 
@@ -23,44 +34,70 @@ public class MbtiBoardController {
         this.mbtiBoardService = mbtiBoardService;
     }
 
+
     // 게시글 조회
     @GetMapping("/mbtiBoards")
-    public String selectAllMbtiBoards(Model model){
+    public ModelAndView selectAllMbtiBoards(HttpServletRequest request, HttpServletResponse response){
+
+        SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
+
+        ModelAndView mav = new ModelAndView();
+
+        if(sessionUser!=null){
+            mav.addObject("userInfo", sessionUser);
+        }
+
 
         List<MbtiBoard> mbtiBoards = mbtiBoardService.findAll();
 
-        model.addAttribute("mbtiBoards", mbtiBoards);
+        mav.addObject("mbtiBoards", mbtiBoards);
+        mav.setViewName("mbtiBoard");
 
-        return "mbtiboard";
+        logger.debug("mbtiBoards 유저 로그인 확인 : " + mav);
+        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav);
+
+
+        return mav;
     }
 
     // 게시글 작성 페이지 이동
     @GetMapping("/mbtiBoards/write")
-    public String selectMbtiBoardWrite(){
+    public ModelAndView selectMbtiBoardWrite(ModelAndView mav){
 
-        return "mbtiboardwrite";
+        mav.setViewName("mbtiboardwrite");
+
+        return mav;
     }
 
     // 글 작성 완료
     @PostMapping("/mbtiBoards/write")
-    public String insertMbtiBoardWrite(HttpSession session, MbtiBoardSaveRequestDto dto, Model model){
+    public ModelAndView insertMbtiBoardWrite(HttpSession session, MbtiBoardSaveRequestDto dto, ModelAndView mav){
+
 
             SessionUser user;
+            RedirectView redirectView = new RedirectView();
+            redirectView.setUrl("/mbtiBoards");
 
             if(session.getAttribute("user") != null){
                 user = (SessionUser) session.getAttribute("user");
                 dto.setUserid(user.getName());
             }
             else{
-                model.addAttribute("result", 0);
-                return "mbtiboard";
+                mav.addObject("result",0);
+                return mav;
             }
             System.out.println("dto : " + dto.getContent());
 
             Long result = mbtiBoardService.save(dto);
-            model.addAttribute("result", result);
 
-        return "redirect:";
+            System.out.println("result : " + result);
+
+            mav.addObject("result", result);
+
+
+            mav.setView(redirectView);
+
+        return mav;
     }
 
 

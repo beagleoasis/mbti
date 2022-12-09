@@ -28,7 +28,12 @@
                             <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
                             <p th:text="'작성자 : ' + ${mbtiBoard.userid}"></p>
                         </div>
-                        <div class="flex-shrink-0"><span th:text="${mbtiBoard.createdDate}" class="text-primary"></span></div>
+                        <div class="flex-shrink-0">
+                            <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
+                            <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">수정</button>
+                            <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">삭제</button>
+                        </div>
+
                     </div>
 
 
@@ -54,6 +59,11 @@
 <!-- script -->
 <script th:inline="javascript">
 
+    let userInfo = [[${userInfo}]];
+    if(userInfo!=null){
+        alert([[${userInfo?.name}]]);
+        alert([[${userInfo?.email}]]);
+    }
 
     /*<![CDATA[*/
     function goToLink() {
