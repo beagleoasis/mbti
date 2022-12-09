@@ -1,11 +1,16 @@
 package com.mbti.mbtitest.ctrl;
 
+import com.mbti.mbtitest.config.auth.SessionUser;
 import com.mbti.mbtitest.domain.mbtiboard.MbtiBoard;
+import com.mbti.mbtitest.dto.MbtiBoardSaveRequestDto;
 import com.mbti.mbtitest.service.MbtiBoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -36,6 +41,27 @@ public class MbtiBoardController {
         return "mbtiboardwrite";
     }
 
+    // 글 작성 완료
+    @PostMapping("/mbtiBoards/write")
+    public String insertMbtiBoardWrite(HttpSession session, MbtiBoardSaveRequestDto dto, Model model){
+
+            SessionUser user;
+
+            if(session.getAttribute("user") != null){
+                user = (SessionUser) session.getAttribute("user");
+                dto.setUserid(user.getName());
+            }
+            else{
+                model.addAttribute("result", 0);
+                return "mbtiboard";
+            }
+            System.out.println("dto : " + dto.getContent());
+
+            Long result = mbtiBoardService.save(dto);
+            model.addAttribute("result", result);
+
+        return "redirect:";
+    }
 
 
     /*
