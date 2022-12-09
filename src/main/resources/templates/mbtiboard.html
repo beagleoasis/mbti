@@ -26,7 +26,7 @@
                         <div class="flex-grow-1">
                             <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
                             <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                            <p th:text="'작성자 : ' + ${mbtiBoard.userid}"></p>
+                            <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
                         </div>
                         <div class="flex-shrink-0">
                             <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>

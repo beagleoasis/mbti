@@ -13,8 +13,13 @@ public class MbtiBoardSaveRequestDto {
 
     // 게시글 작성자 아이디
     private String userid;
+
+    // 게시글 작성자 이메일
+    private String useremail;
+
     // mbti 유형
     private char mbti;
+
     // 작성된 키워드
     private String content;
 
@@ -22,14 +27,17 @@ public class MbtiBoardSaveRequestDto {
 
         return MbtiBoard.builder()
                 .userid(userid)
+                .useremail(useremail)
                 .mbti(mbti)
                 .content(content)
                 .build();
     }
 
     @Builder
-    public MbtiBoardSaveRequestDto(String userid, char mbti, String content){
+    public MbtiBoardSaveRequestDto(String userid, String useremail, char mbti, String content){
+
         this.userid = userid;
+        this.useremail = useremail;
         this.mbti = mbti;
         this.content = content;
     }

@@ -21,6 +21,9 @@ public class MbtiBoard extends BaseTimeEntity {
     private String userid;
 
     @Column(nullable = false)
+    private String useremail;
+
+    @Column(nullable = false)
     private char mbti;
 
     @Column(columnDefinition = "TEXT",nullable = false)
@@ -33,9 +36,10 @@ public class MbtiBoard extends BaseTimeEntity {
     private char status;
 
     @Builder
-    public MbtiBoard(String userid, char mbti, String content, char selectedkeyword){
+    public MbtiBoard(String userid, String useremail, char mbti, String content, char selectedkeyword){
 
         this.userid = userid;
+        this.useremail = useremail;
         this.mbti = mbti;
         this.content = content;
         this.selectedkeyword = selectedkeyword;

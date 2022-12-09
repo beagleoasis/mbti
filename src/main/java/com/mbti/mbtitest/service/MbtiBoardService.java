@@ -21,9 +21,9 @@ public class MbtiBoardService {
         return mbtiBoardRepository.save(dto.toEntity()).getBoardno();
     }
 
-                     // 게시판 전체 조회
-                     @Transactional
-    public List<MbtiBoard> findAll(){
+     // 게시판 전체 조회
+     @Transactional
+     public List<MbtiBoard> findAll(){
         return mbtiBoardRepository.findAll();
     }
 

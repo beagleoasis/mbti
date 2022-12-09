@@ -62,7 +62,9 @@ public class MbtiBoardController {
 
     // 게시글 작성 페이지 이동
     @GetMapping("/mbtiBoards/write")
-    public ModelAndView selectMbtiBoardWrite(ModelAndView mav){
+    public ModelAndView selectMbtiBoardWrite(HttpServletRequest request, HttpServletResponse response){
+
+        ModelAndView mav = new ModelAndView();
 
         mav.setViewName("mbtiboardwrite");
 
@@ -71,15 +73,17 @@ public class MbtiBoardController {
 
     // 글 작성 완료
     @PostMapping("/mbtiBoards/write")
-    public ModelAndView insertMbtiBoardWrite(HttpSession session, MbtiBoardSaveRequestDto dto, ModelAndView mav){
+    public ModelAndView insertMbtiBoardWrite(HttpServletRequest request, HttpServletResponse response, MbtiBoardSaveRequestDto dto){
 
 
             SessionUser user;
+            ModelAndView mav = new ModelAndView();
+
             RedirectView redirectView = new RedirectView();
             redirectView.setUrl("/mbtiBoards");
 
-            if(session.getAttribute("user") != null){
-                user = (SessionUser) session.getAttribute("user");
+            if(request.getSession().getAttribute("user") != null){
+                user = (SessionUser) request.getSession().getAttribute("user");
                 dto.setUserid(user.getName());
             }
             else{
@@ -87,6 +91,8 @@ public class MbtiBoardController {
                 return mav;
             }
             System.out.println("dto : " + dto.getContent());
+
+            dto.setUseremail(user.getEmail());
 
             Long result = mbtiBoardService.save(dto);
 
