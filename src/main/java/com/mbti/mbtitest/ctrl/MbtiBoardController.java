@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -106,6 +107,26 @@ public class MbtiBoardController {
         return mav;
     }
 
+    // 게시글 수정
+    @PostMapping("/mbtiBoards/modify")
+    public ModelAndView selectMbtiBoardModify(HttpServletRequest request, HttpServletResponse response){
+
+        System.out.println("게시글 수정 페이지 진입");
+
+        Long id = Long.valueOf(request.getParameter("boardno"));
+
+        System.out.println(id);
+
+        ModelAndView mav = new ModelAndView();
+
+        MbtiBoard mbtiBoard = mbtiBoardService.findOneById(3);
+
+        mav.addObject("mbtiBoard", mbtiBoard);
+
+        mav.setViewName("mbtiboardmodify");
+
+        return mav;
+    }
 
     /*
     // 모든 mbti 게시글 조회

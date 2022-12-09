@@ -20,24 +20,27 @@
                     <!-- MBTI 키워드 추천하기 게시판 타이틀 -->
                     <h2 class="mb-5">MBTI 키워드를 추천해주세요!</h2>
 
+                    <!-- 게시글 수정 페이지 post 방식 이동을 위한 폼태그-->
+                    <form action="" name="gotopage" method="post">
+                        <input type="hidden" id="boardnoid" name="boardno" value=""/>
 
 
-                    <div th:each="mbtiBoard : ${mbtiBoards}" class="d-flex flex-column flex-md-row justify-content-between">
-                        <div class="flex-grow-1">
-                            <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
-                            <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                            <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
-                        </div>
-                        <div class="flex-shrink-0">
-                            <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
-                            <div>
-                                <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">수정</button>
-                                <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">삭제</button>
+                        <div th:each="mbtiBoard : ${mbtiBoards}" class="d-flex flex-column flex-md-row justify-content-between">
+                            <div class="flex-grow-1">
+                                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
+                                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
+                                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
                             </div>
+                            <div class="flex-shrink-0">
+                                <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
+                                <div>
+                                    <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
+                                    <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button">삭제</button>
+                                </div>
+                            </div>
+
                         </div>
-
-                    </div>
-
+                    </form>
 
                     <!-- 하단 글작성 버튼 -->
                     <div class="d-flex flex-column flex-md-row justify-content-between">
@@ -60,11 +63,30 @@
 
 <!-- script -->
 <script th:inline="javascript">
+    // form 태그
+    let form = document.gotopage;
+
+    // 게시글 수정 링크 이동
+    function modify(id){
+
+        if(id==''){
+            return false;
+        }
+
+        $("#boardnoid").val(id);
+
+        form.action = "/mbtiBoards/modify";
+
+        alert(id);
+    }
+
 
     /*<![CDATA[*/
     function goToLink() {
-        alert(/*[[${helloTest}]]*/);
 
+        alert("!!");
+
+        return true;
     }
     /*]]>*/
 

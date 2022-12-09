@@ -27,4 +27,10 @@ public class MbtiBoardService {
         return mbtiBoardRepository.findAll();
     }
 
+    // 게시글 수정을 위한 단일 게시글 조회
+    @Transactional
+    public MbtiBoard findOneById(long boardno){
+        return mbtiBoardRepository.findById(boardno).get();
+    }
+
 }
