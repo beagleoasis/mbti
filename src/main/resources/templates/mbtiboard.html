@@ -4,7 +4,7 @@
     <head th:replace="fragments/head :: headFragment"></head>
     <body id="page-top">
         <!-- Navigation-->
-        <nav th:replace="fragments/menu :: menuFragment" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav"></nav>
+        <th:block th:replace="fragments/menu :: menuFragment"></th:block>
 
         <!-- Page Content-->
         <div class="container-fluid p-0">
@@ -30,8 +30,10 @@
                         </div>
                         <div class="flex-shrink-0">
                             <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
-                            <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">수정</button>
-                            <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">삭제</button>
+                            <div>
+                                <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">수정</button>
+                                <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">삭제</button>
+                            </div>
                         </div>
 
                     </div>
@@ -58,12 +60,6 @@
 
 <!-- script -->
 <script th:inline="javascript">
-
-    let userInfo = [[${userInfo}]];
-    if(userInfo!=null){
-        alert([[${userInfo?.name}]]);
-        alert([[${userInfo?.email}]]);
-    }
 
     /*<![CDATA[*/
     function goToLink() {

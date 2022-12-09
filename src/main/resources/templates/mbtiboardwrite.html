@@ -66,12 +66,9 @@
     // 유효성 검사
     function validationCheck(){
 
-        alert("!");
 
         let contentValue = $("#contentId").val();
 
-        alert(contentValue);
-        console.log(contentValue);
 
         if(contentValue.length<1){
             alert("내용을 입력해주세요!");
@@ -80,7 +77,6 @@
 
         form.action = "/mbtiBoards/write";
 
-        alert("!!");
         return true;
     }
 
