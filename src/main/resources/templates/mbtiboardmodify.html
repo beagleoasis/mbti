@@ -16,19 +16,20 @@
 
         <div th:each="board : ${mbtiBoard}" class="resume-section-content">
             <!-- 게시글 양식 -->
-            <form action="" name="mbtiboardwrite" method="post" onsubmit="return validationCheck()">
+            <form>
+                <input type="hidden" id="boardnoId" name="boardno" th:value="${board.boardno}" />
 
                 <div class="mb-5"><h3>mbti 유형</h3>
                     <div>
-                        <select name="mbti">
-                            <option value="E">E</option>
-                            <option value="I">I</option>
-                            <option value="N">N</option>
-                            <option value="S">S</option>
-                            <option value="F">F</option>
-                            <option value="T">T</option>
-                            <option value="J">J</option>
-                            <option value="P">P</option>
+                        <select id="mbtiId" name="mbti"  th:value="${board.mbti}">
+                            <option value="E" th:selected="${board.mbti}=='E'">E</option>
+                            <option value="I" th:selected="${board.mbti}=='I'">I</option>
+                            <option value="N" th:selected="${board.mbti}=='N'">N</option>
+                            <option value="S" th:selected="${board.mbti}=='S'">S</option>
+                            <option value="F" th:selected="${board.mbti}=='F'">F</option>
+                            <option value="T" th:selected="${board.mbti}=='T'">T</option>
+                            <option value="J" th:selected="${board.mbti}=='J'">J</option>
+                            <option value="P" th:selected="${board.mbti}=='P'">P</option>
                         </select>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                     <div class="flex-grow-1">
                     </div>
                     <div class="flex-shrink-0">
-                        <button class="text-primary" type="submit">등록</button>
+                        <button class="text-primary" type="button" th:onclick="validationCheck()">등록</button>
                     </div>
                 </div>
 
@@ -82,9 +83,31 @@
             return false;
         }
 
-        form.action = "/mbtiBoards/write";
+        let data = {
+          mbti : $("#mbtiId option:selected").val(),
+          content : $("#contentId").val()
 
-        return true;
+        };
+
+        let boardnoId = $("#boardnoId").val();
+
+        $.ajax({
+            type : 'PUT',
+            url : '/mbtiBoards/modify/'+boardnoId,
+            data : JSON.stringify(data),
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json'
+        }).done(function(r) {
+            alert(r);
+
+            alert('게시글 수정 성공');
+            location.href = '/mbtiBoards';
+
+        }).fail(function(error) {
+            let message = JSON.parse(error.responseText);
+        });
+
+
     }
 
 </script>

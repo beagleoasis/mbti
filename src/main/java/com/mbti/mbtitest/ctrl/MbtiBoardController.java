@@ -2,16 +2,17 @@ package com.mbti.mbtitest.ctrl;
 
 import com.mbti.mbtitest.config.auth.SessionUser;
 import com.mbti.mbtitest.domain.mbtiboard.MbtiBoard;
+import com.mbti.mbtitest.dto.MbtiBoardModifyRequestDto;
 import com.mbti.mbtitest.dto.MbtiBoardSaveRequestDto;
 import com.mbti.mbtitest.service.MbtiBoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -23,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@RequestMapping("/mbtiBoards")
 @Controller
 public class MbtiBoardController {
     // 로거
@@ -37,7 +39,7 @@ public class MbtiBoardController {
 
 
     // 게시글 조회
-    @GetMapping("/mbtiBoards")
+    @GetMapping("")
     public ModelAndView selectAllMbtiBoards(HttpServletRequest request, HttpServletResponse response){
 
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
@@ -62,7 +64,7 @@ public class MbtiBoardController {
     }
 
     // 게시글 작성 페이지 이동
-    @GetMapping("/mbtiBoards/write")
+    @GetMapping("/write")
     public ModelAndView selectMbtiBoardWrite(HttpServletRequest request, HttpServletResponse response){
 
         ModelAndView mav = new ModelAndView();
@@ -73,7 +75,7 @@ public class MbtiBoardController {
     }
 
     // 글 작성 완료
-    @PostMapping("/mbtiBoards/write")
+    @PostMapping("/write")
     public ModelAndView insertMbtiBoardWrite(HttpServletRequest request, HttpServletResponse response, MbtiBoardSaveRequestDto dto){
 
 
@@ -107,8 +109,8 @@ public class MbtiBoardController {
         return mav;
     }
 
-    // 게시글 수정
-    @PostMapping("/mbtiBoards/modify")
+    // 게시글 수정 페이지 이동
+    @PostMapping("/modify")
     public ModelAndView selectMbtiBoardModify(HttpServletRequest request, HttpServletResponse response){
 
         System.out.println("게시글 수정 페이지 진입");
@@ -119,7 +121,7 @@ public class MbtiBoardController {
 
         ModelAndView mav = new ModelAndView();
 
-        MbtiBoard mbtiBoard = mbtiBoardService.findOneById(3);
+        MbtiBoard mbtiBoard = mbtiBoardService.findOneById(id);
 
         mav.addObject("mbtiBoard", mbtiBoard);
 
@@ -127,6 +129,22 @@ public class MbtiBoardController {
 
         return mav;
     }
+
+    // 게시글 수정
+    @PutMapping("/modify/{boardno}")
+    public ResponseEntity updateMbtiBoardModify(@PathVariable Long boardno, HttpServletRequest request, HttpServletResponse response, @RequestBody MbtiBoardModifyRequestDto dto){
+
+
+        long result = 0;
+        result = mbtiBoardService.update(boardno, dto);
+
+        System.out.println("modify result 확인 : " + result);
+
+        return ResponseEntity.ok(result);
+    }
+
+
+
 
     /*
     // 모든 mbti 게시글 조회

@@ -1,6 +1,7 @@
 package com.mbti.mbtitest.service;
 
 import com.mbti.mbtitest.domain.mbtiboard.MbtiBoard;
+import com.mbti.mbtitest.dto.MbtiBoardModifyRequestDto;
 import com.mbti.mbtitest.dto.MbtiBoardSaveRequestDto;
 import com.mbti.mbtitest.repository.MbtiBoardRepository;
 import lombok.AllArgsConstructor;
@@ -32,5 +33,20 @@ public class MbtiBoardService {
     public MbtiBoard findOneById(long boardno){
         return mbtiBoardRepository.findById(boardno).get();
     }
+
+    // 게시글 수정
+    @Transactional
+    public Long update(Long boardno, MbtiBoardModifyRequestDto dto){
+
+        MbtiBoard mbtiBoard = mbtiBoardRepository.findById(boardno)
+                .orElseThrow(IllegalArgumentException::new);
+
+        // JPA의 영속성 컨텍스트 덕분에 entity 객체의 값만 변경하면, 자동으로 변경사항이 반영된다.
+        mbtiBoard.update(dto.getMbti(), dto.getContent());
+
+        return boardno;
+    }
+
+
 
 }

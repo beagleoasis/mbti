@@ -44,4 +44,9 @@ public class MbtiBoard extends BaseTimeEntity {
         this.content = content;
         this.selectedkeyword = selectedkeyword;
     }
+
+    public void update(char mbti, String content){
+        this.mbti = mbti;
+        this.content = content;
+    }
 }
