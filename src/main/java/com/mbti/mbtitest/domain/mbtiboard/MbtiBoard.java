@@ -5,9 +5,12 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
@@ -48,5 +51,9 @@ public class MbtiBoard extends BaseTimeEntity {
     public void update(char mbti, String content){
         this.mbti = mbti;
         this.content = content;
+    }
+
+    public void delete(char status){
+        this.status = status;
     }
 }

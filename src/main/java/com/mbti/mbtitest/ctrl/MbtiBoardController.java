@@ -144,6 +144,14 @@ public class MbtiBoardController {
     }
 
 
+    // 게시글 삭제
+    @DeleteMapping("/delete/{boardno}")
+    public ResponseEntity deleteMbtiBoard(@PathVariable Long boardno){
+
+        long result = mbtiBoardService.delete(boardno);
+
+        return ResponseEntity.ok(result);
+    }
 
 
     /*

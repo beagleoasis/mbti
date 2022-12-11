@@ -47,6 +47,18 @@ public class MbtiBoardService {
         return boardno;
     }
 
+    // 게시글 삭제
+    @Transactional
+    public Long delete(Long boardno){
+
+        MbtiBoard mbtiBoard = mbtiBoardRepository.findById(boardno)
+                .orElseThrow(IllegalArgumentException::new);
+
+        mbtiBoard.delete('T');
+
+        return boardno;
+    }
+
 
 
 }
