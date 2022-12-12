@@ -8,7 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MbtiBoardRepository extends JpaRepository<MbtiBoard, Long> {
 
-    // 페이징 기법을 활용할 레포지토리에 메서드 추가
-    Page<MbtiBoard> findAll(Pageable pageable);
+    // 페이징 기법을 활용할 레포지토리 메서드 추가
+    //Page<MbtiBoard> findAll(Pageable pageable);
+
+    //Page<MbtiBoard> findMbtiBoardsByStatusNotContaining(String status, Pageable pageable);
+    Page<MbtiBoard> findMbtiBoardsByStatusIsNull(Pageable pageable);
+
 
 }

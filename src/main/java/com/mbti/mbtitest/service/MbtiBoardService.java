@@ -28,7 +28,8 @@ public class MbtiBoardService {
      @Transactional
      public Page<MbtiBoard> findAll(Pageable pageable){
         //return mbtiBoardRepository.findAll();
-        return mbtiBoardRepository.findAll(pageable);
+        /*return mbtiBoardRepository.findAll(pageable);*/
+         return mbtiBoardRepository.findMbtiBoardsByStatusIsNull(pageable);
     }
 
     // 게시글 수정을 위한 단일 게시글 조회
@@ -57,7 +58,7 @@ public class MbtiBoardService {
         MbtiBoard mbtiBoard = mbtiBoardRepository.findById(boardno)
                 .orElseThrow(IllegalArgumentException::new);
 
-        mbtiBoard.delete('T');
+        mbtiBoard.delete("T");
 
         return boardno;
     }

@@ -45,6 +45,7 @@ public class MbtiBoardController {
     // 게시글 조회
     @GetMapping("")
     public ModelAndView selectAllMbtiBoards(HttpServletRequest request, HttpServletResponse response,
+                                            // 페이징을 위한 PageableDefault 매개변수 추가
                                             @PageableDefault(page = 0, size = 10, sort = "boardno", direction = Sort.Direction.DESC)
                                             Pageable pageRequest){
 
@@ -55,7 +56,6 @@ public class MbtiBoardController {
         if(sessionUser!=null){
             mav.addObject("userInfo", sessionUser);
         }
-
 
         Page<MbtiBoard> mbtiBoards = mbtiBoardService.findAll(pageRequest);
 

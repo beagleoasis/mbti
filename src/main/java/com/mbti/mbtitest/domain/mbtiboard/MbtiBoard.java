@@ -27,19 +27,19 @@ public class MbtiBoard extends BaseTimeEntity {
     private String useremail;
 
     @Column(nullable = false)
-    private char mbti;
+    private String mbti;
 
     @Column(columnDefinition = "TEXT",nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private char selectedkeyword;
+    @Column(length = 1)
+    private String selectedkeyword;
 
-    @Column
-    private char status;
+    @Column(length = 1)
+    private String status;
 
     @Builder
-    public MbtiBoard(String userid, String useremail, char mbti, String content, char selectedkeyword){
+    public MbtiBoard(String userid, String useremail, String mbti, String content, String selectedkeyword){
 
         this.userid = userid;
         this.useremail = useremail;
@@ -48,12 +48,12 @@ public class MbtiBoard extends BaseTimeEntity {
         this.selectedkeyword = selectedkeyword;
     }
 
-    public void update(char mbti, String content){
+    public void update(String mbti, String content){
         this.mbti = mbti;
         this.content = content;
     }
 
-    public void delete(char status){
+    public void delete(String status){
         this.status = status;
     }
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MbtiBoardModifyRequestDto {
 
-    private char mbti;
+    private String mbti;
 
     private String content;
 
@@ -23,7 +23,7 @@ public class MbtiBoardModifyRequestDto {
     }
 
     @Builder
-    public MbtiBoardModifyRequestDto(char mbti, String content){
+    public MbtiBoardModifyRequestDto(String mbti, String content){
         this.mbti = mbti;
         this.content = content;
     }
