@@ -32,7 +32,7 @@
             <div class="mb-5">
               <div>
 
-                <select name="mbtiSelectBox">
+                <select name="mbti">
                   <option value="ENFJ">ENFJ</option>
                   <option value="ENTJ">ENTJ</option>
                   <option value="ENFP">ENFP</option>
@@ -73,11 +73,15 @@
 <!-- script -->
 <script th:inline="javascript">
 
+  let form = document.mbtiFindForm;
+
   function validationCheck(){
+
+    form.action = "/mbtiTest/result";
 
     alert("!");
 
-    return false;
+    return true;
   }
 
 
