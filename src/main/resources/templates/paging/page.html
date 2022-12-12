@@ -2,12 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="pageFragment" class="pagination">
-  <ul>
-      <li>
-        <a>1</a>
-      </li>
-      <li>
-        <a>2</a>
+  <ul th:with="start=${(mbtiBoards.number/10)*10 + 1},
+                end=(${(mbtiBoards.totalPages == 0) ? 1 : (start + (10 - 1) < mbtiBoards.totalPages ? start + (10 - 1) : mbtiBoards.totalPages)})">
+      <li th:each="page: ${#numbers.sequence(start, end)}">
+          <a th:text="${page}" th:href="@{/mbtiBoards(page=${page - 1})}"></a>
       </li>
   </ul>
 </div>
