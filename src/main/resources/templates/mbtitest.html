@@ -16,29 +16,48 @@
   <!-- About-->
   <section class="resume-section" id="about">
     <div class="resume-section-content">
-      <h1 class="mb-0">
+      <h2 class="mb-0">
         MBTI
-        <span class="text-primary">랜덤 이름 짓기</span>
-      </h1>
+        <span class="text-primary">유형을 입력해주세요!</span>
+      </h2>
+
+
       <div class="subheading mb-5">
-        <!--3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·-->
-
       </div>
-      <div class="subheading mb-5" style="text-align: center"><a href="">시작하기!</a></div>
 
-      <!--<div class="social-icons">
-          <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
-      </div>-->
+      <form action="" name="mbtiFindForm" method="get" onsubmit="return validationCheck()">
 
-      <!-- Social Login Buttons -->
-      <div class="login-sns" th:if="${userInfo == null}">
-        <button type="button" th:onclick="|location.href='@{/oauth2/authorization/kakao}'|">
-          <img src="/assets/img/login-kakao.png">
-        </button>
-        <button type="button">
-          <img src="/assets/img/login-naver.png">
-        </button>
-      </div>
+        <!-- mbti -->
+        <div class="login-sns">
+            <div class="mb-5">
+              <div>
+
+                <select name="mbtiSelectBox">
+                  <option value="ENFJ">ENFJ</option>
+                  <option value="ENTJ">ENTJ</option>
+                  <option value="ENFP">ENFP</option>
+                  <option value="ENTP">ENTP</option>
+                  <option value="ESFJ">ESJF</option>
+                  <option value="ESTP">ESTP</option>
+                  <option value="ESTJ">ESTJ</option>
+                  <option value="INFP">INFP</option>
+                  <option value="INFJ">INFJ</option>
+                  <option value="INTP">INTP</option>
+                  <option value="ISTP">ISTP</option>
+                  <option value="ISFP">ISFP</option>
+                  <option value="ISTJ">ISTJ</option>
+                  <option value="INTJ">INTJ</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <div>
+                <button class="text-primary" type="submit" th:text="결과보기" style="width: auto"></button>
+              </div>
+            </div>
+        </div><!-- end of mbti -->
+      </form>
     </div>
   </section>
 
@@ -53,6 +72,13 @@
 
 <!-- script -->
 <script th:inline="javascript">
+
+  function validationCheck(){
+
+    alert("!");
+
+    return false;
+  }
 
 
 </script>
