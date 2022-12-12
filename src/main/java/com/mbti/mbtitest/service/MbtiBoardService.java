@@ -5,6 +5,8 @@ import com.mbti.mbtitest.dto.MbtiBoardModifyRequestDto;
 import com.mbti.mbtitest.dto.MbtiBoardSaveRequestDto;
 import com.mbti.mbtitest.repository.MbtiBoardRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +26,9 @@ public class MbtiBoardService {
 
      // 게시판 전체 조회
      @Transactional
-     public List<MbtiBoard> findAll(){
-        return mbtiBoardRepository.findAll();
+     public Page<MbtiBoard> findAll(Pageable pageable){
+        //return mbtiBoardRepository.findAll();
+        return mbtiBoardRepository.findAll(pageable);
     }
 
     // 게시글 수정을 위한 단일 게시글 조회

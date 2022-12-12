@@ -26,7 +26,7 @@
 
                         <th:block th:each="mbtiBoard : ${mbtiBoards}">
                             <!--<div th:if="${mbtiBoard.status.toString().equals('F')}" class="d-flex flex-column flex-md-row justify-content-between">-->
-                            <div class="d-flex flex-column flex-md-row justify-content-between">
+                            <div th:if="${!#strings.equals(mbtiBoard.status, 'T')}" class="d-flex flex-column flex-md-row justify-content-between">
                                 <div class="flex-grow-1">
                                     <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
                                     <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
@@ -56,15 +56,22 @@
 
             </section>
 
+            <!-- Paging -->
+            <th:block th:replace="paging/page :: pageFragment"></th:block>
+
 
         </div>
-            <!-- common/js -->
-            <th:block th:replace="common/js :: jsFragment"><</th:block>
+
+
+        <!-- common/js -->
+        <th:block th:replace="common/js :: jsFragment"></th:block>
     </body>
 </html>
 
 <!-- script -->
 <script th:inline="javascript">
+    console.log([[${mbtiBoards}]]);
+    console.log([[${mbtiBoards.pageable}]]);
     // form 태그
     let form = document.gotopage;
 

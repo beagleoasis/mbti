@@ -8,6 +8,10 @@ import com.mbti.mbtitest.service.MbtiBoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -40,7 +44,9 @@ public class MbtiBoardController {
 
     // 게시글 조회
     @GetMapping("")
-    public ModelAndView selectAllMbtiBoards(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView selectAllMbtiBoards(HttpServletRequest request, HttpServletResponse response,
+                                            @PageableDefault(page = 0, size = 10, sort = "boardno", direction = Sort.Direction.DESC)
+                                            Pageable pageRequest){
 
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
 
@@ -51,13 +57,17 @@ public class MbtiBoardController {
         }
 
 
-        List<MbtiBoard> mbtiBoards = mbtiBoardService.findAll();
+        Page<MbtiBoard> mbtiBoards = mbtiBoardService.findAll(pageRequest);
 
         mav.addObject("mbtiBoards", mbtiBoards);
         mav.setViewName("mbtiBoard");
 
         logger.debug("mbtiBoards 유저 로그인 확인 : " + mav);
         System.out.println("mbtiBoards 유저 로그인 확인 : " + mav);
+        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav.getModel().get("mbtiBoards"));
+        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav.getModel().get("mbtiBoards").toString());
+        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav.getModel());
+
 
 
         return mav;

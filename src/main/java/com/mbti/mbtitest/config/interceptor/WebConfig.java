@@ -16,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor()) // 로그인 인터셉터 등록
                 .order(2) // 숫자가 낮을수록 먼저 호출
                 .addPathPatterns("/**/write") // 인터셉터를 적용할 url 패턴
+                .addPathPatterns("/**/modify")
                 .excludePathPatterns("/css/**", "/*.ico", "/error"); // 인터셉터에서 제외할 패턴
     }
 }
