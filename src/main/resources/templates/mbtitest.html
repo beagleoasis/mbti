@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: headFragment"></head>
+
+<body id="page-top">
+
+<!-- Navigation-->
+<nav th:replace="fragments/menu :: menuFragment" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav"></nav>
+
+<!-- Page Content-->
+<div class="container-fluid p-0">
+
+
+  <!-- About-->
+  <section class="resume-section" id="about">
+    <div class="resume-section-content">
+      <h1 class="mb-0">
+        MBTI
+        <span class="text-primary">랜덤 이름 짓기</span>
+      </h1>
+      <div class="subheading mb-5">
+        <!--3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·-->
+
+      </div>
+      <div class="subheading mb-5" style="text-align: center"><a href="">시작하기!</a></div>
+
+      <!--<div class="social-icons">
+          <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
+      </div>-->
+
+      <!-- Social Login Buttons -->
+      <div class="login-sns" th:if="${userInfo == null}">
+        <button type="button" th:onclick="|location.href='@{/oauth2/authorization/kakao}'|">
+          <img src="/assets/img/login-kakao.png">
+        </button>
+        <button type="button">
+          <img src="/assets/img/login-naver.png">
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+
+</div>
+
+<!-- common/js -->
+<th:block th:replace="common/js :: jsFragment"><</th:block>
+</body>
+</html>
+
+<!-- script -->
+<script th:inline="javascript">
+
+
+</script>

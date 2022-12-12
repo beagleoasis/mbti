@@ -26,7 +26,9 @@
 
                         <th:block th:each="mbtiBoard : ${mbtiBoards}">
                             <!--<div th:if="${mbtiBoard.status.toString().equals('F')}" class="d-flex flex-column flex-md-row justify-content-between">-->
+
                             <div th:if="${!#strings.equals(mbtiBoard.status, 'T')}" class="d-flex flex-column flex-md-row justify-content-between">
+
                                 <div class="flex-grow-1">
                                     <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
                                     <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
@@ -40,7 +42,9 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div><!-- end of div -->
+                            <hr/>
+
                         </th:block>
                     </form>
 
@@ -90,7 +94,6 @@
 
     // 게시글 삭제
     function deleteMbtiBoard(id){
-        alert("삭제버튼 클릭");
 
         if(confirm("해당 게시글을 삭제하시겠습니까?")){
             // 예
@@ -101,7 +104,7 @@
                 dataType : 'json'
             }).done(function(result) {
 
-                alert('게시글 삭제 성공');
+                alert('게시글 삭제를 완료했습니다.');
                 location.reload();
 
             }).fail(function(error) {
