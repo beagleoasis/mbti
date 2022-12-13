@@ -57,7 +57,7 @@ public class MbtiBoardController {
             mav.addObject("userInfo", sessionUser);
         }
 
-        Page<MbtiBoard> mbtiBoards = mbtiBoardService.findAll(pageRequest);
+        Page<MbtiBoard> mbtiBoards = mbtiBoardService.findAllExceptForDelete(pageRequest);
 
         mav.addObject("mbtiBoards", mbtiBoards);
         mav.setViewName("mbtiBoard");

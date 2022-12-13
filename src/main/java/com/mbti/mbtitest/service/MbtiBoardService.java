@@ -24,12 +24,19 @@ public class MbtiBoardService {
         return mbtiBoardRepository.save(dto.toEntity()).getBoardno();
     }
 
-     // 게시판 전체 조회
+     // 게시판 전체 조회(삭제된 게시글 제외)
      @Transactional
-     public Page<MbtiBoard> findAll(Pageable pageable){
+     public Page<MbtiBoard> findAllExceptForDelete(Pageable pageable){
         //return mbtiBoardRepository.findAll();
         /*return mbtiBoardRepository.findAll(pageable);*/
          return mbtiBoardRepository.findMbtiBoardsByStatusIsNull(pageable);
+    }
+
+    // mbti 별 랜덤 선택된 게시글 조회
+    @Transactional
+    public List<MbtiBoard> findRandomlySelectedMbtiBoards(){
+
+        return mbtiBoardRepository.findAll();
     }
 
     // 게시글 수정을 위한 단일 게시글 조회

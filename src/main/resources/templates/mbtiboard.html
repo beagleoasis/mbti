@@ -25,26 +25,27 @@
                         <input type="hidden" id="boardnoid" name="boardno" value=""/>
 
                         <th:block th:each="mbtiBoard : ${mbtiBoards}">
-                            <!--<div th:if="${mbtiBoard.status.toString().equals('F')}" class="d-flex flex-column flex-md-row justify-content-between">-->
-
-                            <div th:if="${!#strings.equals(mbtiBoard.status, 'T')}" class="d-flex flex-column flex-md-row justify-content-between">
-
-                                <div class="flex-grow-1">
-                                    <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
-                                    <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                                    <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
-                                    <div>
-                                        <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
-                                        <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
+                            
+                            <th:block th:if="${!#strings.equals(mbtiBoard.status, 'T')}">
+                                <div class="d-flex flex-column flex-md-row justify-content-between">
+                                    <!-- 게시물 정보 -->
+                                    <div class="flex-grow-1">
+                                        <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
+                                        <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
+                                        <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
                                     </div>
-                                </div>
 
-                            </div><!-- end of div -->
-                            <hr/>
+                                    <div class="flex-shrink-0">
+                                        <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
+                                        <div>
+                                            <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
+                                            <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
+                                        </div>
+                                    </div>
 
+                                </div><!-- end of div -->
+                                <hr/>
+                            </th:block>
                         </th:block>
                     </form>
 
