@@ -7,7 +7,7 @@
 <body id="page-top">
 
 <!-- Navigation-->
-<nav th:replace="fragments/menu :: menuFragment" class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav"></nav>
+<th:block th:replace="fragments/menu"></th:block>
 
 <!-- Page Content-->
 <div class="container-fluid p-0">
@@ -32,7 +32,7 @@
             <div class="mb-5">
               <div>
 
-                <select name="mbti">
+                <select name="mbti" style="height: 40px; width: 100px;">
                   <option value="ENFJ">ENFJ</option>
                   <option value="ENTJ">ENTJ</option>
                   <option value="ENFP">ENFP</option>
@@ -57,7 +57,12 @@
               </div>
             </div>
         </div><!-- end of mbti -->
+
+        <h3 class="mb-0" style="text-align: right; margin-top: 30px;">
+          MBTI에 대한 사람들의 생각을 보여줍니다!
+        </h3>
       </form>
+
     </div>
   </section>
 
@@ -84,5 +89,26 @@
     return true;
   }
 
+
+
+  $(document).ready(function () {
+
+    // url에 따른 메뉴 탭 active 효과 적용
+    let url = window.location.href;
+
+    let menuTapId = "";
+
+    if (url.indexOf("/mbtiBoards") != -1) {
+      menuTapId = "mbtiBoards";
+    } else if (url.indexOf("/mbtiTest") != -1) {
+      menuTapId = "mbtiTest";
+    } else if (url.indexOf("/loginJoin") != -1) {
+      menuTapId = "loginJoin";
+    }
+
+
+    $("#" + menuTapId).attr("class", "nav-link js-scroll-trigger active");
+
+  });
 
 </script>

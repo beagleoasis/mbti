@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("mbtiTest")
+@RequestMapping("/mbtiTest")
 @Controller
 public class MbtiTestController {
 
