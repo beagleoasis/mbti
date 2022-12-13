@@ -15,51 +15,33 @@
   <section class="resume-section" id="education">
     <div class="resume-section-content">
       <!-- MBTI 결과 -->
-      <h2 class="mb-5">당신의 MBTI는</h2>
+      <h2 class="mb-0">
+        당신의
+        <span class="text-primary">MBTI는?!</span>
+      </h2>
 
-        <th:block th:each="mbtiBoard : ${mbtiResultList}">
 
-          <th:block th:if="${!#strings.equals(mbtiBoard.status, 'T')}">
-            <div class="d-flex flex-column flex-md-row justify-content-between">
-              <!-- 게시물 정보 -->
-              <div class="flex-grow-1">
-                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
-                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
-              </div>
+              <div class="d-flex flex-column flex-md-row justify-content-between" style="margin-top: 100px;">
+                <th:block th:each="mbtiBoards : ${mbtiResultList}">
+                  <!-- 게시물 정보 -->
+                  <div class="flex-grow-1" style="border-right: solid; margin-left: 20px;">
+                    <th:block th:each="mbtiBoard, i : ${mbtiBoards}">
 
-              <div class="flex-grow-1">
-                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
-                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
-              </div>
+                        <h2 th:if="${i.index eq 0}" th:text="${mbtiBoard.mbti}" class="mb-0"></h2>
+                        <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
 
-              <div class="flex-grow-1">
-                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
-                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
-              </div>
+                    </th:block>
 
-              <div class="flex-grow-1">
-                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
-                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
-              </div>
+                  </div>
 
-            </div><!-- end of div -->
+                </th:block>
+              </div><!-- end of div -->
 
-          </th:block>
+      <h2 class="mb-0" style="text-align: right; margin-top: 100px;">
+        이네요!
+      </h2>
 
-        </th:block>
 
-      <!-- 하단 글작성 버튼 -->
-      <div class="d-flex flex-column flex-md-row justify-content-between">
-        <div class="flex-grow-1">
-        </div>
-        <div class="flex-shrink-0">
-          <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">키워드 작성하기</button>
-        </div>
-      </div>
     </div>
 
   </section>

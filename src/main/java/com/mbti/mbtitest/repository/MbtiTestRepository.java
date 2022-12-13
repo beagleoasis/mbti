@@ -15,7 +15,9 @@ public interface MbtiTestRepository extends JpaRepository<MbtiBoard, Long> {
             "FROM mbtitest.mbti_board " +
             "where selectedkeyword = 'T'" +
             "and status is null " +
-            "and mbti = :mbti"
+            "and mbti = :mbti " +
+            "order by RAND() " +
+            "limit 3"
                 , nativeQuery = true)
     List<MbtiBoard> findAllByMbti(@Param("mbti") String mbti);
 

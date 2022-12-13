@@ -57,6 +57,7 @@ public class MbtiTestController {
             mbtiResultList.add(mbtiBoards);
         }
 
+        // null 처리 및 컨트롤러에서 타임리프 분류 작업 시작
 
         mav.addObject("mbtiResultList",mbtiResultList);
 
