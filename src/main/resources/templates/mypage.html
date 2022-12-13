@@ -12,39 +12,23 @@
 <!-- Page Content-->
 <div class="container-fluid p-0">
 
-  <section class="resume-section" id="education">
+  <section class="resume-section" id="interests">
     <div class="resume-section-content">
-      <!-- MBTI 결과 -->
-      <h2 class="mb-0">
-        당신의
-        <span class="text-primary">MBTI는?!</span>
-      </h2>
+      <h3 class="mb-5" th:text="'회원 이름 : ' + ${userInfo.name}"></h3>
+      <h3 class="mb-5" th:text="'회원 이메일 : ' + ${userInfo.email}"></h3>
 
-
-              <div class="d-flex flex-column flex-md-row justify-content-between" style="margin-top: 100px;">
-                <th:block th:each="mbtiBoards : ${mbtiResultList}">
-                  <!-- 게시물 정보 -->
-                  <div class="flex-grow-1" style="border-right: solid; margin-left: 20px;">
-                    <th:block th:each="mbtiBoard, i : ${mbtiBoards}">
-
-                        <h2 th:if="${i.index eq 0}" th:text="${mbtiBoard.mbti}" class="mb-0"></h2>
-                        <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
-
-                    </th:block>
-
-                  </div>
-
-                </th:block>
-              </div><!-- end of div -->
-
-      <h2 class="mb-0" style="text-align: right; margin-top: 100px;">
-        이네요!
-      </h2>
-
-
+      <!-- 하단 글작성 버튼 -->
+      <div class="d-flex flex-column flex-md-row justify-content-between">
+        <div class="flex-grow-1">
+        </div>
+        <div class="flex-shrink-0">
+          <button class="text-primary" type="button" th:onclick="|location.href='@{/}'|">회원 탈퇴</button>
+        </div>
+      </div>
     </div>
-
   </section>
+  <hr class="m-0" />
+
 
 
 </div>
@@ -56,8 +40,6 @@
 
 <!-- script -->
 <script th:inline="javascript">
-
-
 
   $(document).ready(function () {
 

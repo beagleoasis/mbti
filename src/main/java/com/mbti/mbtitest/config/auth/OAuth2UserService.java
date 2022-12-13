@@ -21,7 +21,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class OAuth2UserService extends DefaultOAuth2UserService {
 
-    private final UserRepository userRepository;
+    private final OAuth2UserRepository oAuth2UserRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -60,10 +60,10 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
     private User saveOrUpdate(OAuthAttributes attributes){
         // 이메일을 기준으로 유저를 찾아온다. Optional으로 찾아오기 때문에 값이 만약 null이라면,
         // Optional의 orElse 메서드를 통해 저장된 값을 유저로 만들어 반환한다.
-        User user =  userRepository.findOneByEmail(attributes.getEmail())
+        User user =  oAuth2UserRepository.findOneByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName()))
                 .orElse(attributes.toEntity());
 
-        return userRepository.save(user);
+        return oAuth2UserRepository.save(user);
     }
 }

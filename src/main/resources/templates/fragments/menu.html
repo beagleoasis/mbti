@@ -21,14 +21,11 @@
                         <a id="mbtiBoards" class="nav-link js-scroll-trigger" href="#" th:onclick="|location.href='@{/mbtiBoards}'|">MBTI 특징 추천하기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#">사용된 기술 스택</a>
+                        <a id="usedSkills" class="nav-link js-scroll-trigger" href="#">사용된 기술 스택</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#">Interests</a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:if="${session.user != null}" class="nav-link js-scroll-trigger" href="#">mypage</a>
-                        <a th:if="${session.user == null}" class="nav-link js-scroll-trigger" href="#">login</a>
+                        <a th:if="${session.user != null}" id="mypage" class="nav-link js-scroll-trigger" href="#" th:onclick="|location.href='@{/users/mypage}'|">mypage</a>
+                        <!--<a th:if="${session.user == null}" class="nav-link js-scroll-trigger" href="#">login</a>-->
                     </li>
                 </ul>
             </div>
