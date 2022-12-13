@@ -14,15 +14,10 @@
 
   <section class="resume-section" id="education">
     <div class="resume-section-content">
-      <!-- MBTI 키워드 추천하기 게시판 타이틀 -->
-      <h2 class="mb-5">MBTI 키워드를 추천해주세요!</h2>
+      <!-- MBTI 결과 -->
+      <h2 class="mb-5">당신의 MBTI는</h2>
 
-      <!-- 게시글 수정 페이지 post 방식 이동을 위한 폼태그-->
-      <form action="" name="gotopage" method="post">
-        <input type="hidden" id="boardnoid" name="boardno" value=""/>
-
-        <th:block th:each="mbtiBoard : ${mbtiBoards}">
-          <!--<div th:if="${mbtiBoard.status.toString().equals('F')}" class="d-flex flex-column flex-md-row justify-content-between">-->
+        <th:block th:each="mbtiBoard : ${mbtiResultList}">
 
           <th:block th:if="${!#strings.equals(mbtiBoard.status, 'T')}">
             <div class="d-flex flex-column flex-md-row justify-content-between">
@@ -33,21 +28,29 @@
                 <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
               </div>
 
-              <div class="flex-shrink-0">
-                <span th:text="${mbtiBoard.createdDate}" class="text-primary"></span>
-                <div>
-                  <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
-                  <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
-                </div>
+              <div class="flex-grow-1">
+                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
+                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
+                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
+              </div>
+
+              <div class="flex-grow-1">
+                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
+                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
+                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
+              </div>
+
+              <div class="flex-grow-1">
+                <h3 th:text="'MBTI : ' + ${mbtiBoard.mbti}" class="mb-0"></h3>
+                <div th:text="${mbtiBoard.content}" class="subheading mb-3"></div>
+                <p th:text="'작성자 : ' + ${mbtiBoard.useremail}"></p>
               </div>
 
             </div><!-- end of div -->
 
-           <hr/>
           </th:block>
 
         </th:block>
-      </form>
 
       <!-- 하단 글작성 버튼 -->
       <div class="d-flex flex-column flex-md-row justify-content-between">

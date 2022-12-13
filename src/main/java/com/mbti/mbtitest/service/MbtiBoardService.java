@@ -4,6 +4,7 @@ import com.mbti.mbtitest.domain.mbtiboard.MbtiBoard;
 import com.mbti.mbtitest.dto.MbtiBoardModifyRequestDto;
 import com.mbti.mbtitest.dto.MbtiBoardSaveRequestDto;
 import com.mbti.mbtitest.repository.MbtiBoardRepository;
+import com.mbti.mbtitest.repository.MbtiTestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,8 @@ import java.util.List;
 public class MbtiBoardService {
 
     private MbtiBoardRepository mbtiBoardRepository;
+
+    private MbtiTestRepository mbtiTestRepository;
 
     // 게시글 저장
     @Transactional
@@ -34,9 +37,9 @@ public class MbtiBoardService {
 
     // mbti 별 랜덤 선택된 게시글 조회
     @Transactional
-    public List<MbtiBoard> findRandomlySelectedMbtiBoards(){
+    public List<MbtiBoard> findRandomlySelectedMbtiBoards(String mbti){
 
-        return mbtiBoardRepository.findAll();
+        return mbtiTestRepository.findAllByMbti(mbti);
     }
 
     // 게시글 수정을 위한 단일 게시글 조회

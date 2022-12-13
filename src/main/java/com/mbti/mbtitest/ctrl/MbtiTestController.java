@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("mbtiTest")
@@ -40,9 +41,25 @@ public class MbtiTestController {
 
         System.out.println("dto : " + dto.getMbti());
 
-        List<MbtiBoard> mbtiBoards = mbtiBoardService.findRandomlySelectedMbtiBoards();
+        // dto를 통해 넘어온 mbti를 4가지 문자로 자르기
+        String[] mbtiArr = dto.getMbti().toUpperCase().split("");
 
-        mav.addObject("mbtiBoards",mbtiBoards);
+        List<List <MbtiBoard>> mbtiResultList = new ArrayList<>();
+
+        for(int i=0; i<mbtiArr.length; i++){
+
+            System.out.println("mbtiArr : " + mbtiArr[i]);
+
+            // mbti 별 개별 리스트 가져오기,
+            List<MbtiBoard> mbtiBoards = mbtiBoardService.findRandomlySelectedMbtiBoards(mbtiArr[i]);
+
+            // 전체 리스트에 추가
+            mbtiResultList.add(mbtiBoards);
+        }
+
+
+        mav.addObject("mbtiResultList",mbtiResultList);
+
         mav.setViewName("mbtitestresult");
 
         return mav;
