@@ -1,5 +1,6 @@
 package com.mbti.mbtitest.domain.user;
 
+import com.mbti.mbtitest.config.auth.Role;
 import com.mbti.mbtitest.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -25,15 +26,16 @@ public class User extends BaseTimeEntity {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     @Column(name = "nickname", nullable = true, unique = true)
     private String nickname;
 
 
     @Builder //생성을 Builder 패턴으로 하기 위해서
-    public User(Long id, String name, String email, String role, String nickname) {
+    public User(Long id, String name, String email, Role role, String nickname) {
         this.id = id;
         this.name = name;
         this.email = email;

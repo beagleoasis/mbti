@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
 //			  .antMatchers("/**").authenticated() // 인가된 사용자만 접근 가능하도록 설정
 //			  .antMatchers("게시물등").hasRole(Role.USER.name()) // 특정 ROLE을 가진 사용자만 접근 가능하도록 설정
+                // interceptor를 사용해보기 위해 대체 했음
                 .and()
                     .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
