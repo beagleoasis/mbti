@@ -14,17 +14,18 @@
 
   <section class="resume-section" id="interests">
     <div class="resume-section-content">
-      <h3 class="mb-5" th:text="'회원 이름 : ' + ${userInfo.name}"></h3>
-      <h3 class="mb-5" th:text="'회원 이메일 : ' + ${userInfo.email}"></h3>
+      <h3 class="mb-5" th:text="'회원 이름 : ' + ${user.name}"></h3>
+      <h3 class="mb-5" th:text="'회원 이메일 : ' + ${user.email}"></h3>
 
       <!-- 하단 글작성 버튼 -->
       <div class="d-flex flex-column flex-md-row justify-content-between">
         <div class="flex-grow-1">
         </div>
         <div class="flex-shrink-0">
-          <button class="text-primary" type="button" th:onclick="|location.href='@{/}'|">회원 탈퇴</button>
+          <button class="text-primary" type="button" th:onclick="deleteUser('[[${user.id}]]')">회원 탈퇴</button>
         </div>
       </div>
+
     </div>
   </section>
   <hr class="m-0" />
@@ -40,6 +41,34 @@
 
 <!-- script -->
 <script th:inline="javascript">
+
+  function deleteUser(id){
+
+    alert(id);
+
+    if(confirm("회원탈퇴를 하시겠습니까?")){
+      alert("!!");
+
+      $.ajax({
+        type : 'DELETE',
+        url : '/users/mypage/'+id,
+        contentType : 'application/json; charset=utf-8',
+        dataType : 'json'
+      }).done(function(result) {
+
+        alert(result);
+
+        alert('회원탈퇴를 완료했습니다.');
+
+        location.href = "/loginJoin";
+
+      }).fail(function(error) {
+        let message = JSON.parse(error.responseText);
+      });
+    }
+
+  }
+
 
   $(document).ready(function () {
 

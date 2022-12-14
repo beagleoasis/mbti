@@ -68,6 +68,7 @@ public class MbtiBoardService {
         MbtiBoard mbtiBoard = mbtiBoardRepository.findById(boardno)
                 .orElseThrow(IllegalArgumentException::new);
 
+        // status 속성을 T로 바꾸어 삭제 처리
         mbtiBoard.delete("T");
 
         return boardno;

@@ -1,12 +1,12 @@
 package com.mbti.mbtitest.ctrl;
 
 import com.mbti.mbtitest.config.auth.SessionUser;
+import com.mbti.mbtitest.domain.user.User;
 import com.mbti.mbtitest.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,12 +41,26 @@ public class UserController {
 
         String email = sessionUser.getEmail();
 
-        userService.findOneByEmail(email);
+        User user = userService.findOneByEmail(email);
+
+        System.out.println("user : " + user.getId());
+
+        mav.addObject("user", user);
 
         mav.setViewName("mypage");
 
         return mav;
     }
 
+    // 유저 삭제
+    @DeleteMapping("/mypage/{id}")
+    public ResponseEntity deleteUser(@PathVariable Long id){
+
+        System.out.println("id : " + id);
+
+        userService.deleteUser(id);
+
+        return ResponseEntity.ok(200);
+    }
 
 }

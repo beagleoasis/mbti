@@ -19,4 +19,11 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
+    // 유저 탈퇴
+    @Transactional
+    public void deleteUser(Long id){
+
+        userRepository.deleteById(id);
+
+    }
 }
