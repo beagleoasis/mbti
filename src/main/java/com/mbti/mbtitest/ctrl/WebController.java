@@ -15,24 +15,11 @@ public class WebController {
 
     private PostsService postsService;
 
-    @GetMapping("/")
-    public String main(Model model) {
-        model.addAttribute("helloTest","Test!!");
-        return "index";
+    @GetMapping("/usedSkills")
+    public String selectUsedSkills() {
+
+        return "usedSkills";
     }
 
-    @GetMapping("/mbti")
-    public String selectMbti(Model model, HttpSession httpSession){
-        model.addAttribute("userInfo", httpSession.getAttribute("user"));
-        System.out.println("model : " + model.getAttribute("userInfo"));
-        return "mbtiboard";
-    }
-
-    @GetMapping("/test")
-    public String test(Model model, HttpSession httpSession) {
-
-        model.addAttribute("userInfo", httpSession.getAttribute("user"));
-        return "index";
-    }
 
 }

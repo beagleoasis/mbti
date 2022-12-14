@@ -56,9 +56,13 @@
         dataType : 'json'
       }).done(function(result) {
 
-        alert(result);
+        if(result == 0){
+          alert("회원탈퇴를 실패했습니다.")
+        }
+        else{
+          alert("회원탈퇴를 완료했습니다.");
+        }
 
-        alert('회원탈퇴를 완료했습니다.');
 
         location.href = "/loginJoin";
 

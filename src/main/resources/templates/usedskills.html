@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="fragments/head :: headFragment"></head>
+
+    <body id="page-top">
+
+    <!-- Navigation-->
+    <th:block th:replace="fragments/menu"></th:block>
+
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+
+
+
+
+
+
+
+            <!-- Skills-->
+            <section class="resume-section" id="skills">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">기술</h2>
+<!--                    <div class="subheading mb-3">사용 기술 스택</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><i class="fab fa-java"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-angular"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-react"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-sass"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-less"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-wordpress"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-gulp"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-grunt"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
+                    </ul>-->
+                    <div class="subheading mb-3">사용된 기술 스택</div>
+                    <ul class="fa-ul mb-0">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Spring boot
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Spring framework
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Java 8.0
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            JPA
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            OAuth2.0
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Spring Security
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            AWS Cloud
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Linux Server
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            MySQL
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+
+
+        </div>
+
+        <!-- common/js -->
+        <th:block th:replace="common/js :: jsFragment"><</th:block>
+    </body>
+</html>
+
+<!-- script -->
+<script th:inline="javascript">
+
+    $(document).ready(function () {
+
+        // url에 따른 메뉴 탭 active 효과 적용
+        let url = window.location.href;
+
+        let menuTapId = "";
+
+        if (url.indexOf("/mbtiBoards") != -1) {
+            menuTapId = "mbtiBoards";
+        } else if (url.indexOf("/mbtiTest") != -1) {
+            menuTapId = "mbtiTest";
+        } else if (url.indexOf("/loginJoin") != -1) {
+            menuTapId = "loginJoin";
+        } else if (url.indexOf("/usedSkills") != -1) {
+            menuTapId = "usedSkills";
+        } else if (url.indexOf("/mypage") != -1){
+            menuTapId = "mypage";
+        }
+
+
+
+        $("#" + menuTapId).attr("class", "nav-link js-scroll-trigger active");
+
+    });
+
+</script>

@@ -144,8 +144,14 @@ public class MbtiBoardController {
     @PutMapping("/modify/{boardno}")
     public ResponseEntity updateMbtiBoardModify(@PathVariable Long boardno, HttpServletRequest request, HttpServletResponse response, @RequestBody MbtiBoardModifyRequestDto dto){
 
+        SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
 
         long result = 0;
+
+        if(sessionUser==null){
+            return ResponseEntity.ok(result);
+        }
+
         result = mbtiBoardService.update(boardno, dto);
 
         System.out.println("modify result 확인 : " + result);
@@ -156,45 +162,20 @@ public class MbtiBoardController {
 
     // 게시글 삭제
     @DeleteMapping("/delete/{boardno}")
-    public ResponseEntity deleteMbtiBoard(@PathVariable Long boardno){
+    public ResponseEntity deleteMbtiBoard(@PathVariable Long boardno, HttpServletRequest request, HttpServletResponse response){
 
-        long result = mbtiBoardService.delete(boardno);
+        SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
+
+        long result = 0;
+
+        if(sessionUser==null){
+            return ResponseEntity.ok(result);
+        }
+
+        result = mbtiBoardService.delete(boardno);
 
         return ResponseEntity.ok(result);
     }
-
-
-    /*
-    // 모든 mbti 게시글 조회
-    @GetMapping("/mbtiBoards")
-    public ResponseEntity<CollectionModel<EntityModel<MbtiBoard>>> selectAllMbtiBoards(){
-
-        List<EntityModel<MbtiBoard>> result = new ArrayList<>();
-
-        List<MbtiBoard> mbtiBoards = service.findAll();
-
-        for (MbtiBoard mbtiBoard : mbtiBoards){
-            EntityModel entityModel = EntityModel.of(mbtiBoard);
-            entityModel.add(linkTo(methodOn(this.getClass()).selectAllMbtiBoards()).withSelfRel());
-
-            result.add(entityModel);
-        }
-
-        return ResponseEntity.ok(
-                CollectionModel.of(
-                        result,linkTo(
-                                methodOn(
-                                this.getClass()
-                                ).selectAllMbtiBoards()
-                        ).withSelfRel()
-                    )
-                );
-
-    }
-    */
-
-
-
 
 
 }

@@ -54,9 +54,15 @@ public class UserController {
 
     // 유저 삭제
     @DeleteMapping("/mypage/{id}")
-    public ResponseEntity deleteUser(@PathVariable Long id){
+    public ResponseEntity deleteUser(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response){
 
         System.out.println("id : " + id);
+
+        SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
+
+        if(sessionUser==null){
+            return ResponseEntity.ok(0);
+        }
 
         userService.deleteUser(id);
 
