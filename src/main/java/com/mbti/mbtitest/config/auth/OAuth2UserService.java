@@ -64,6 +64,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
                 .map(entity -> entity.update(attributes.getName()))
                 .orElse(attributes.toEntity());
 
+
         return oAuth2UserRepository.save(user);
     }
 }
