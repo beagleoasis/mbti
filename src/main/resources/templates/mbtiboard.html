@@ -41,7 +41,8 @@
                                         <div>
                                             <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
                                             <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
-                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')}" class="text-primary" type="button" th:onclick="enrollKeyword('[[${mbtiBoard.boardno}]]')">키워드 등록</button>
+                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${mbtiBoard?.selectedkeyword == null}" class="text-primary" type="button" th:onclick="enrollKeyword('[[${mbtiBoard.boardno}]]')">키워드 등록</button>
+                                            <button th:unless="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${mbtiBoard?.selectedkeyword == null}" class="text-primary" type="button" th:onclick="enrollKeyword('[[${mbtiBoard.boardno}]]')">키워드 해제</button>
                                         </div>
                                     </div>
 
@@ -128,17 +129,9 @@
     // 관리자의 추천 키워드 등록
     function enrollKeyword(boardno){
         alert(boardno);
+
+
     }
-
-    /*<![CDATA[*/
-    function goToLink() {
-
-        alert("!!");
-
-        return true;
-    }
-    /*]]>*/
-
 
 
 
