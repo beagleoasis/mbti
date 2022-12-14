@@ -16,21 +16,18 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <h2 class="mb-0">
-                        MBTI
-                        <span class="text-primary">랜덤 이름 짓기</span>
+                        사람들이 생각하는
                     </h2>
-                    <div class="subheading mb-5">
-                        <!--3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·-->
 
-                    </div>
-                    <div class="subheading mb-5" style="text-align: center"><a href="#" th:onclick="|location.href='@{/mbtiTest}'|">시작하기!</a></div>
+                    <h2 class="mb-0"  style="text-align: center; margin-top: 30px;">
+                        <span class="text-primary">MBTI 별 특징</span>
+                    </h2>
 
-                    <!--<div class="social-icons">
-                        <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    </div>-->
+                    <div class="subheading mb-5" style="text-align: center; margin-top: 100px;"><a href="#" th:onclick="|location.href='@{/mbtiTest}'|">확인하기!</a></div>
 
                     <!-- Social Login Buttons -->
-                    <div class="login-sns" th:if="${userInfo == null}">
+                    <div class="login-sns" th:if="${userInfo == null}" style="margin-top: 100px;">
+                        <h4 class="mb-0">소셜 회원가입</h4>
                         <button type="button" th:onclick="|location.href='@{/oauth2/authorization/kakao}'|">
                             <img src="/assets/img/login-kakao.png">
                         </button>
