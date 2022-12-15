@@ -39,10 +39,12 @@
                                     <div class="flex-shrink-0">
                                         <span th:text="${#temporals.format(mbtiBoard.createdDate, 'yyyy-MM-dd HH:mm')}" class="text-primary"></span>
                                         <div>
+                                            <!-- 로그인 유저가 작성한 게시글인 경우 노출 -->
                                             <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
-                                            <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
-                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${mbtiBoard?.selectedkeyword == null}" class="text-primary" type="button" th:onclick="enrollKeyword('[[${mbtiBoard.boardno}]]')">키워드 등록</button>
-                                            <button th:unless="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${mbtiBoard?.selectedkeyword == null}" class="text-primary" type="button" th:onclick="enrollKeyword('[[${mbtiBoard.boardno}]]')">키워드 해제</button>
+                                            <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()} or ${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
+                                            <!-- 관리자 노출 버튼 -->
+                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${#strings.equals(mbtiBoard?.selectedkeyword, 'T')}" class="text-primary" type="button" th:onclick="controlKeyword('[[${mbtiBoard.boardno}]]')">키워드 등록</button>
+                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${not #strings.equals(mbtiBoard?.selectedkeyword, 'T')}" class="text-primary" type="button" th:onclick="controlKeyword('[[${mbtiBoard.boardno}]]')">키워드 해제</button>
                                         </div>
                                     </div>
 
@@ -126,10 +128,27 @@
     }
 
 
-    // 관리자의 추천 키워드 등록
-    function enrollKeyword(boardno){
-        alert(boardno);
+    // 관리자의 추천 키워드 등록/해제
+    function controlKeyword(boardno){
 
+        $.ajax({
+            type : 'PUT',
+            url : '/admins/mbtiBoards/'+boardno,
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json'
+        }).done(function(result) {
+
+            if(result == 0){
+                alert("키워드 설정 변경을 실패했습니다.")
+            }
+            else{
+                alert("키워드 설정 변경을 완료했습니다.");
+            }
+            location.reload();
+
+        }).fail(function(error) {
+            let message = JSON.parse(error.responseText);
+        });
 
     }
 

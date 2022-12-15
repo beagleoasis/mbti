@@ -21,16 +21,20 @@ public class SecurityConfig {
         System.out.println("filterChain http : " + http.authorizeRequests());
 
         http.csrf().disable(); // csrf 공격을 막아주는 옵션을 해제, rest api의 경우 브라우저를 통해 request를 받지 않기 때문
-        http.authorizeRequests()
+
+        http
+                .authorizeRequests() // 요청에 의한 보안 검사 시작,
+			    .antMatchers("/admins").hasRole("ADMIN") // 특정 ROLE을 가진 사용자만 접근 가능하도록 설정
+                //.antMatchers("/**").authenticated() // 인가된 사용자만 접근 가능하도록 설정
+                //.anyRequest().authenticated() // 어느 요청에도 보안 검사를 하겠다.
                 .anyRequest().permitAll()
-//			  .antMatchers("/**").authenticated() // 인가된 사용자만 접근 가능하도록 설정
-//			  .antMatchers("게시물등").hasRole(Role.USER.name()) // 특정 ROLE을 가진 사용자만 접근 가능하도록 설정
-                // interceptor를 사용해보기 위해 대체 했음
+
                 .and()
                     .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                     .logoutSuccessUrl("/loginJoin")// 로그아웃 요청시, 홈으로 이동
                     .invalidateHttpSession(true) // 로그아웃시 생성된 세션 삭제 활성화
+                
                 .and()
                     .oauth2Login() // OAuth2 로그인을 처리하는 메서드
                     .defaultSuccessUrl("/mbtiBoards") // 로그인 성공 후 리디렉션 페이지

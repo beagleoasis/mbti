@@ -17,6 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(2) // 숫자가 낮을수록 먼저 호출
                 .addPathPatterns("/**/write") // 인터셉터를 적용할 url 패턴
                 .addPathPatterns("/**/modify")
+                .addPathPatterns("/**/mypage")
                 .excludePathPatterns("/css/**", "/*.ico", "/error"); // 인터셉터에서 제외할 패턴
     }
 }

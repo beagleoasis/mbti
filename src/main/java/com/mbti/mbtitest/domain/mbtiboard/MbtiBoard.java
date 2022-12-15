@@ -56,4 +56,12 @@ public class MbtiBoard extends BaseTimeEntity {
     public void delete(String status){
         this.status = status;
     }
+
+    public void updateKeyword(String selectedkeyword){
+        this.selectedkeyword = selectedkeyword;
+    }
+
+    public void updateKeywordNull(){
+        this.selectedkeyword = null;
+    }
 }
