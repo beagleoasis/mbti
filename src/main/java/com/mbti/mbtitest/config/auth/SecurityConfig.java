@@ -24,7 +24,7 @@ public class SecurityConfig {
 
         http
                 .authorizeRequests() // 요청에 의한 보안 검사 시작,
-			    .antMatchers("/admins").hasRole("ADMIN") // 특정 ROLE을 가진 사용자만 접근 가능하도록 설정
+			    .antMatchers("/admins/**").hasRole("ADMIN") // 특정 ROLE을 가진 사용자만 접근 가능하도록 설정
                 //.antMatchers("/**").authenticated() // 인가된 사용자만 접근 가능하도록 설정
                 //.anyRequest().authenticated() // 어느 요청에도 보안 검사를 하겠다.
                 .anyRequest().permitAll()
@@ -34,7 +34,7 @@ public class SecurityConfig {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                     .logoutSuccessUrl("/loginJoin")// 로그아웃 요청시, 홈으로 이동
                     .invalidateHttpSession(true) // 로그아웃시 생성된 세션 삭제 활성화
-                
+
                 .and()
                     .oauth2Login() // OAuth2 로그인을 처리하는 메서드
                     .defaultSuccessUrl("/mbtiBoards") // 로그인 성공 후 리디렉션 페이지

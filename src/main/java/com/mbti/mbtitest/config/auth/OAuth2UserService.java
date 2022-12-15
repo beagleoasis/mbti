@@ -53,7 +53,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         System.out.println("user 소셜로그인 확인@@@@@ : " + user.getName());
         System.out.println("user 소셜로그인 확인@@@@@ : " + user.getRole());
 
-        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
+        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRole().role)),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
     }
