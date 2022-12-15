@@ -43,8 +43,8 @@
                                             <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()}" class="text-primary" type="submit" th:onclick="modify('[[${mbtiBoard.boardno}]]')">수정</button>
                                             <button th:if="${mbtiBoard.useremail eq session.user?.getEmail()} or ${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')}" class="text-primary" type="button" th:onclick="deleteMbtiBoard('[[${mbtiBoard.boardno}]]')">삭제</button>
                                             <!-- 관리자 노출 버튼 -->
-                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${#strings.equals(mbtiBoard?.selectedkeyword, 'T')}" class="text-primary" type="button" th:onclick="controlKeyword('[[${mbtiBoard.boardno}]]')">키워드 등록</button>
-                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${not #strings.equals(mbtiBoard?.selectedkeyword, 'T')}" class="text-primary" type="button" th:onclick="controlKeyword('[[${mbtiBoard.boardno}]]')">키워드 해제</button>
+                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${#strings.equals(mbtiBoard?.selectedkeyword, 'T')}" class="text-primary" type="button" th:onclick="controlKeyword('[[${mbtiBoard.boardno}]]')">키워드 해제</button>
+                                            <button th:if="${#strings.equals(session.user?.getRole(), 'ROLE_ADMIN')} and ${not #strings.equals(mbtiBoard?.selectedkeyword, 'T')}" class="text-primary" type="button" th:onclick="controlKeyword('[[${mbtiBoard.boardno}]]')">키워드 등록</button>
                                         </div>
                                     </div>
 
