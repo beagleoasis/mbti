@@ -16,9 +16,13 @@ spring:
     # DB username
     username: root
     # DB password
-    password: 293648ak!
+    password: 293648ak
     # DB Source URL
-    url: jdbc:mysql://localhost:3306/mbtitest
+    # url: jdbc:mysql://localhost:3306/mbtitest
+    url: jdbc:mysql://mbtitest.cfqhgs70crvg.ap-northeast-2.rds.amazonaws.com:3306/mbtitest
+    dbcp2:
+      test-on-borrow: true
+      validation-query: select 1
 
 
   management:
