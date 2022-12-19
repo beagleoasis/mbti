@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("/mbtiTest")
+@RequestMapping("mbtiTest")
 @Controller
 public class MbtiTestController {
 
@@ -34,7 +34,7 @@ public class MbtiTestController {
     }
 
     // mbti 테스트 결과 화면 이동
-    @GetMapping("/result")
+    @GetMapping("result")
     public ModelAndView goToTestResultPage(MbtiTestSelectRequestDto dto){
 
         ModelAndView mav = new ModelAndView();

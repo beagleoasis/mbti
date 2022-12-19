@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@AllArgsConstructor
 public class WebController {
 
     private PostsService postsService;
 
-    @GetMapping("/usedSkills")
+    @GetMapping("usedSkills")
     public String selectUsedSkills() {
 
         return "usedSkills";

@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/mbtiBoards")
+@RequestMapping("mbtiBoards")
 @Controller
 public class MbtiBoardController {
     // 로거
@@ -74,7 +74,7 @@ public class MbtiBoardController {
     }
 
     // 게시글 작성 페이지 이동
-    @GetMapping("/write")
+    @GetMapping("write")
     public ModelAndView selectMbtiBoardWrite(HttpServletRequest request, HttpServletResponse response){
 
         ModelAndView mav = new ModelAndView();
@@ -85,7 +85,7 @@ public class MbtiBoardController {
     }
 
     // 글 작성 완료
-    @PostMapping("/write")
+    @PostMapping("write")
     public ModelAndView insertMbtiBoardWrite(HttpServletRequest request, HttpServletResponse response, MbtiBoardSaveRequestDto dto){
 
 
@@ -120,7 +120,7 @@ public class MbtiBoardController {
     }
 
     // 게시글 수정 페이지 이동
-    @PostMapping("/modify")
+    @PostMapping("modify")
     public ModelAndView selectMbtiBoardModify(HttpServletRequest request, HttpServletResponse response){
 
         System.out.println("게시글 수정 페이지 진입");
@@ -141,7 +141,7 @@ public class MbtiBoardController {
     }
 
     // 게시글 수정
-    @PutMapping("/modify/{boardno}")
+    @PutMapping("modify/{boardno}")
     public ResponseEntity updateMbtiBoardModify(@PathVariable Long boardno, HttpServletRequest request, HttpServletResponse response, @RequestBody MbtiBoardModifyRequestDto dto){
 
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
@@ -161,7 +161,7 @@ public class MbtiBoardController {
 
 
     // 게시글 삭제
-    @DeleteMapping("/delete/{boardno}")
+    @DeleteMapping("delete/{boardno}")
     public ResponseEntity deleteMbtiBoard(@PathVariable Long boardno, HttpServletRequest request, HttpServletResponse response){
 
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");

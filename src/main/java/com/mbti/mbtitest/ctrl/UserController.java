@@ -24,7 +24,7 @@ public class UserController {
 
 
     // 유저 마이페이지 이동
-    @GetMapping("/mypage")
+    @GetMapping("mypage")
     public ModelAndView selectUserMyPage(HttpServletRequest request, HttpServletResponse response){
 
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     // 유저 삭제
-    @DeleteMapping("/mypage/{id}")
+    @DeleteMapping("mypage/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response){
 
         System.out.println("id : " + id);

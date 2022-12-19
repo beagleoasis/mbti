@@ -40,7 +40,7 @@ public class AdminController {
 
 
     // mbtiBoards 게시글 키워드 등록/해제
-    @PutMapping("/mbtiBoards/{boardno}")
+    @PutMapping("mbtiBoards/{boardno}")
     public ResponseEntity updateMbtiBoardKeyword(@PathVariable Long boardno, HttpServletRequest request, HttpServletResponse response){
 
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");

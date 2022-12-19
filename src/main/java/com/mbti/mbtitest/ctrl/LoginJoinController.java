@@ -18,7 +18,7 @@ public class LoginJoinController {
         this.loginJoinService = loginJoinService;
     }
 
-    @GetMapping("/loginJoin")
+    @GetMapping("loginJoin")
     public String goToLoginJoinPage(Model model){
 
         return "loginjoin";
