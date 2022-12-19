@@ -33,9 +33,9 @@ spring:
           include: '*'
 
   # 타임 리프
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
+  #thymeleaf:
+    #prefix: classpath:templates/
+    #suffix: .html
 
   # spring security - 소셜 로그인(카카오)
   security:
