@@ -28,7 +28,7 @@ public class HelloControllerTest {
         String hello = "hello";
 
         // MockMvc를 통해 /hello 주소로 http get
-        mvc.perform(get("/hello"))
+        mvc.perform(get("hello"))
                 // isOK result = 200 or not
                 .andExpect(status().isOk())
                 // HelloController result = hello check
@@ -42,7 +42,7 @@ public class HelloControllerTest {
         int amount = 1000;
 
         mvc.perform(
-                get("/hello/dto")
+                get("hello/dto")
                 // api 테스트를 할 때, 사용할 요청 파라미터를 설정하는 것
                 .param("name",name)
                 .param("amount", String.valueOf(amount))
