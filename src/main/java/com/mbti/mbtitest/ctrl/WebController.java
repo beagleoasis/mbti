@@ -17,7 +17,7 @@ public class WebController {
     @GetMapping("usedSkills")
     public String selectUsedSkills() {
 
-        return "usedSkills";
+        return "usedskills";
     }
 
 

@@ -60,7 +60,7 @@ public class MbtiBoardController {
         Page<MbtiBoard> mbtiBoards = mbtiBoardService.findAllExceptForDelete(pageRequest);
 
         mav.addObject("mbtiBoards", mbtiBoards);
-        mav.setViewName("mbtiBoard");
+        mav.setViewName("mbtiboard");
 
         logger.debug("mbtiBoards 유저 로그인 확인 : " + mav);
         System.out.println("mbtiBoards 유저 로그인 확인 : " + mav);
