@@ -29,9 +29,9 @@ public class MbtiBoardRepositoryTest {
         // 1.given
         MbtiBoard params = MbtiBoard.builder()
                 .userid("testKim")
-                .mbti('E')
+                .mbti("E")
                 .content("so fun people")
-                .selectedkeyword('Y')
+                .selectedkeyword("Y")
                 .build();
 
         // 2.when
@@ -40,9 +40,9 @@ public class MbtiBoardRepositoryTest {
         // 3.then
         MbtiBoard entity = boardRepository.findById((long)1).get();
         assertThat(entity.getUserid()).isEqualTo("testKim");
-        assertThat(entity.getMbti()).isEqualTo('E');
+        assertThat(entity.getMbti()).isEqualTo("E");
         assertThat(entity.getContent()).isEqualTo("so fun people");
-        assertThat(entity.getSelectedkeyword()).isEqualTo('Y');
+        assertThat(entity.getSelectedkeyword()).isEqualTo("Y");
 
 
     }
