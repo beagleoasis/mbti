@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .and()
                     .oauth2Login() // OAuth2 로그인을 처리하는 메서드
                     .defaultSuccessUrl("/mbtiBoards") // 로그인 성공 후 리디렉션 페이지
-                    .failureUrl("/") // 로그인 실패 후 리디렉션 페이지
+                    .failureUrl("/loginJoin") // 로그인 실패 후 리디렉션 페이지
                     .userInfoEndpoint() // 로그인 성공 후, 사용자 정보를 가져올 때 설정을 담당
                     .userService(oAuth2UserService); // 로그인 성공 시, 작업을 진행
 
