@@ -34,8 +34,13 @@ public class AdminService {
 
         String checkKeyword = "T";
 
-        if(mbtiBoard.getSelectedkeyword() == null || mbtiBoard.getSelectedkeyword().equals("T")){
-            checkKeyword = "F";
+        // null이 아니라면,
+        if(mbtiBoard.getSelectedkeyword()!=null){
+            // 키워드가 등록되어있다면,
+            if(mbtiBoard.getSelectedkeyword().equals("T")){
+                // 미등록 처리
+                checkKeyword = "F";
+            }
         }
 
         mbtiBoard.updateKeyword(checkKeyword);
