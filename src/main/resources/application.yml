@@ -65,6 +65,6 @@ decorator:
     p6spy:
       enable-logging: true
 
-# 서버 기본 포트 설정       
+# 서버 기본 포트 설정
 server:
-  port: 80
+  port: 8080
