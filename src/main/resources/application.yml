@@ -45,8 +45,8 @@ spring:
           kakao:
             client-id: cd517171875d57e47b7e6c334b4ebbfb
             client-secret: hUrq8zcPP6uDCJxcjC7xWd6WVMjeYp70
-            #redirect-uri: http://localhost:8080/login/oauth2/code/kakao
-            redirect-uri: http://mbtitestbypeople.link:8080/login/oauth2/code/kakao
+            #redirect-uri: http://localhost/login/oauth2/code/kakao
+            redirect-uri: http://mbtitestbypeople.link/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             client-authentication-method: POST
             client-name: Kakao # Spring 내에서 인식할 OAuth2 Provider Name

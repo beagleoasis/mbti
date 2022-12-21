@@ -66,7 +66,7 @@ public class UserController {
 
         userService.deleteUser(id);
 
-        request.removeAttribute("user");
+        request.getSession().invalidate();
 
         return ResponseEntity.ok(200);
     }
