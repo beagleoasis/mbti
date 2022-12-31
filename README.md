@@ -6,7 +6,7 @@
 
 제작 인원 : 1명(개인 토이 프로젝트)
 
-사용 기술 : Spring boot, Java 8.0, JPA, REST API, OAuth2.0, Spring Security, AWS Cloud, Linux Server, MySQL8.0
+사용 기술 : Spring boot, Java 8.0, JPA, REST API, OAuth2.0, Spring Security, AWS Cloud, Linux Server, Thymeleaf, MySQL8.0
 
 핵심 기능 : JPA를 활용한 페이징, OAuth2.0과 Spring Security를 이용한 소셜 로그인
 
