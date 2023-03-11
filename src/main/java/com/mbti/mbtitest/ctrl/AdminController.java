@@ -53,7 +53,6 @@ public class AdminController {
 
         result = adminService.updateMbtiBoardKeyword(boardno);
 
-        System.out.println("result 확인 : " + result);
         return ResponseEntity.ok(result);
     }
 

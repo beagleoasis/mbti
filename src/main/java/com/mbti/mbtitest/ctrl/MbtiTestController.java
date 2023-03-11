@@ -48,8 +48,6 @@ public class MbtiTestController {
 
         for(int i=0; i<mbtiArr.length; i++){
 
-            System.out.println("mbtiArr : " + mbtiArr[i]);
-
             // mbti 별 개별 리스트 가져오기,
             List<MbtiBoard> mbtiBoards = mbtiBoardService.findRandomlySelectedMbtiBoards(mbtiArr[i]);
 

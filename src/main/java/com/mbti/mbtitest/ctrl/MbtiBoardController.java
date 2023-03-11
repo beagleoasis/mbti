@@ -62,14 +62,6 @@ public class MbtiBoardController {
         mav.addObject("mbtiBoards", mbtiBoards);
         mav.setViewName("mbtiboard");
 
-        logger.debug("mbtiBoards 유저 로그인 확인 : " + mav);
-        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav);
-        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav.getModel().get("mbtiBoards"));
-        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav.getModel().get("mbtiBoards").toString());
-        System.out.println("mbtiBoards 유저 로그인 확인 : " + mav.getModel());
-
-
-
         return mav;
     }
 
@@ -123,11 +115,7 @@ public class MbtiBoardController {
     @PostMapping("modify")
     public ModelAndView selectMbtiBoardModify(HttpServletRequest request, HttpServletResponse response){
 
-        System.out.println("게시글 수정 페이지 진입");
-
         Long id = Long.valueOf(request.getParameter("boardno"));
-
-        System.out.println(id);
 
         ModelAndView mav = new ModelAndView();
 
@@ -153,8 +141,6 @@ public class MbtiBoardController {
         }
 
         result = mbtiBoardService.update(boardno, dto);
-
-        System.out.println("modify result 확인 : " + result);
 
         return ResponseEntity.ok(result);
     }
