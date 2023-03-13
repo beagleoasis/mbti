@@ -39,8 +39,6 @@ public class MbtiTestController {
 
         ModelAndView mav = new ModelAndView();
 
-        System.out.println("dto : " + dto.getMbti());
-
         // dto를 통해 넘어온 mbti를 4가지 문자로 자르기
         String[] mbtiArr = dto.getMbti().toUpperCase().split("");
 

@@ -49,8 +49,10 @@ public class MbtiBoardController {
                                             @PageableDefault(page = 0, size = 10, sort = "boardno", direction = Sort.Direction.DESC)
                                             Pageable pageRequest){
 
+        // 유저 세션
         SessionUser sessionUser = (SessionUser) request.getSession().getAttribute("user");
 
+        // 데이터를 담아 view로 전달되는 model and view
         ModelAndView mav = new ModelAndView();
 
         if(sessionUser!=null){
@@ -95,13 +97,10 @@ public class MbtiBoardController {
                 mav.addObject("result",0);
                 return mav;
             }
-            System.out.println("dto : " + dto.getContent());
 
             dto.setUseremail(user.getEmail());
 
             Long result = mbtiBoardService.save(dto);
-
-            System.out.println("result : " + result);
 
             mav.addObject("result", result);
 

@@ -18,8 +18,6 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // HttpSecurity Settings : 리소스(URL) 접근 권한 설정, 이동 지점 설정 등
 
-        System.out.println("filterChain http : " + http.authorizeRequests());
-
         http.csrf().disable(); // csrf 공격을 막아주는 옵션을 해제, rest api의 경우 브라우저를 통해 request를 받지 않기 때문
 
         http
@@ -41,9 +39,6 @@ public class SecurityConfig {
                     .failureUrl("/") // 로그인 실패 후 리디렉션 페이지
                     .userInfoEndpoint() // 로그인 성공 후, 사용자 정보를 가져올 때 설정을 담당
                     .userService(oAuth2UserService); // 로그인 성공 시, 작업을 진행
-
-
-        System.out.println("http : " + http.toString());
 
         return http.build();
     }

@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession(false);
 
         if(session==null || session.getAttribute("user")==null){
-            System.out.println("비로그인 유저");
+            logger.debug("비로그인 유저 확인");
             response.sendRedirect("/loginJoin");
             return false;
         }

@@ -27,8 +27,6 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
-        System.out.println("userRequest : " + userRequest.toString());
-
         org.springframework.security.oauth2.client.userinfo.OAuth2UserService<OAuth2UserRequest, OAuth2User> service
                 = new DefaultOAuth2UserService();
 
@@ -49,9 +47,6 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
         User user = saveOrUpdate(attributes);
 
         httpSession.setAttribute("user", new SessionUser(user));
-
-        System.out.println("user 소셜로그인 확인@@@@@ : " + user.getName());
-        System.out.println("user 소셜로그인 확인@@@@@ : " + user.getRole());
 
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(user.getRole().role)),
                 attributes.getAttributes(),

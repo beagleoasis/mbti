@@ -18,6 +18,7 @@ public class LoginJoinController {
         this.loginJoinService = loginJoinService;
     }
 
+    // 로그인/회원가입 페이지 이동
     @GetMapping("loginJoin")
     public String goToLoginJoinPage(Model model){
 
