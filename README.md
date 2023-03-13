@@ -10,7 +10,11 @@
 
 사용 기술 : Spring boot, Java 8.0, JPA, REST API, OAuth2.0, Spring Security, AWS Cloud, Linux Server, JavaScript, Thymeleaf, MySQL8.0, Docker
 
-핵심 기능 : 1)OAuth2.0과 Spring Security를 이용한 소셜 로그인 API 연동 2)JPA를 활용한 게시판 시스템 구축 3)REST API 설계 4)AWS EC2 환경에서 Docker로 배포
+핵심 기능 : 
++ OAuth2.0과 Spring Security를 이용한 소셜 로그인 API 연동 
++ JPA를 활용한 게시판 시스템 구축 
++ REST API 설계 
++ AWS EC2 환경에서 Docker로 배포
 
 느낀 점 : 
 + 프론트/백엔드
