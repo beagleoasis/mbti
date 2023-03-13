@@ -59,7 +59,7 @@
                         <div class="flex-grow-1">
                         </div>
                         <div class="flex-shrink-0">
-                            <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/write}'|">키워드 작성하기</button>
+                            <button class="text-primary" type="button" th:onclick="|location.href='@{/mbtiBoards/post}'|">키워드 작성하기</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
 
         $("#boardnoid").val(id);
 
-        form.action = "/mbtiBoards/modify";
+        form.action = "/mbtiBoards/revision";
 
     }
 
@@ -104,7 +104,7 @@
             // 예
             $.ajax({
                 type : 'DELETE',
-                url : '/mbtiBoards/delete/'+id,
+                url : '/mbtiBoards/deletion/'+id,
                 contentType : 'application/json; charset=utf-8',
                 dataType : 'json'
             }).done(function(result) {
